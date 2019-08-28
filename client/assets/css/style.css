@@ -1,6 +1,7 @@
 body {
     height: 100vh;
-
+    font-family: Geneva;
+    font-size: 10px;
 }
 body * {
     box-sizing: border-box;
@@ -17,7 +18,8 @@ body * {
 }
 .display-text {
     text-align: right;
-    width: 98%;
+    width: 95%;
+    font-size: 20px;
 }
 .display-container {
     position: relative;
