@@ -46,8 +46,11 @@ function applyClickHandlers(){
     calculationArray.push(stringNumberToPush);
     stringNumberToPush = "";
     displayArray = [];
-    answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1]);
-    console.log(answer);
+    while (calculationArray.length >=3){
+      var answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1]);
+      calculationArray.splice(0,3,answer);
+    }
+    // console.log(answer);
     displayArray.push(answer);
     updateDisplay();
   });
