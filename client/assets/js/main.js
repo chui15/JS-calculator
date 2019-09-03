@@ -5,7 +5,6 @@ var displayArray = [];
 var stringNumberToPush = "";
 var answer = null;
 var inputtedNumber = "";
-// var displayText = null;
 
 function initializeApp(){
   applyClickHandlers();
@@ -13,7 +12,6 @@ function initializeApp(){
 
 function applyClickHandlers(){
   $('#number-block').on('click', '.number', function numberButtonHandler(event){
-    // console.log(event);
     inputtedNumber = $(event.currentTarget).find('p').text();
     stringNumberToPush = stringNumberToPush.concat(inputtedNumber);
     displayArray.push(inputtedNumber);
@@ -21,7 +19,6 @@ function applyClickHandlers(){
     updateDisplay();
   });
   $('#operator-column').on('click', '.operator', function operatorButtonHandler(event){
-    // console.log(event);
     var inputtedOperator = "";
     inputtedOperator = $(event.currentTarget).find('p').text();
     displayArray.push(inputtedOperator);
@@ -43,14 +40,27 @@ function applyClickHandlers(){
     stringNumberToPush = "";
   });
   $('#equals').on('click', function equalsButtonHandler(event){
-    calculationArray.push(stringNumberToPush);
+    if (stringNumberToPush !== "") {
+      calculationArray.push(stringNumberToPush);
+    }
     stringNumberToPush = "";
     displayArray = [];
+    //partial operand - checks last value, if operator then we push the number before the operator as num2
+     if (isNaN(calculationArray[calculationArray.length-1])){
+      calculationArray.push(calculationArray[calculationArray.length-2]);
+    }
+    //if missing operators, inputted number is pushed as the answer
+    if (!calculationArray.some(isNaN)){
+      var answer = calculationArray[calculationArray.length-1];
+    }
     while (calculationArray.length >=3){
       var answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1]);
       calculationArray.splice(0,3,answer);
     }
-    // console.log(answer);
+    //if missing operands and numbers
+    if (calculationArray[calculationArray.length-1] == null) {
+      var answer = 0;
+    }
     displayArray.push(answer);
     updateDisplay();
   });
@@ -72,12 +82,6 @@ function applyClickHandlers(){
     displayArray = [];
     updateDisplay();
   });
-  // $('#c-button').on('click', function clearOnce(event){
-    //remove from end of string every time it is clicked
-  //   stringNumberToPush = $(stringNumberToPush).slice(0,-1);
-  //   displayArray.push(stringNumberToPush);
-  //   updateDisplay();
-  // });
 }
 
 function updateDisplay (){
