@@ -11,6 +11,12 @@ function initializeApp(){
 }
 
 function applyClickHandlers(){
+  $('#c-button').on('click', function(){
+    $('.modal').show();
+    $('.close').on('click', function(){
+      $('.modal').hide();
+    })
+  });
   $('#number-block').on('click', '.number', function numberButtonHandler(event){
     inputtedNumber = $(event.currentTarget).find('p').text();
     stringNumberToPush = stringNumberToPush.concat(inputtedNumber);
