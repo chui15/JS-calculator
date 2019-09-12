@@ -51,6 +51,12 @@ function applyClickHandlers(){
     }
     stringNumberToPush = "";
     displayArray = [];
+    console.log(calculationArray);
+    if (calculationArray.indexOf('3.14') !== -1){
+      $('.pie').show();
+      $('.noface').show();
+      calculationArray = [];
+    }
     //partial operand - checks last value, if operator then we push the number before the operator as num2
      if (isNaN(calculationArray[calculationArray.length-1])){
       calculationArray.push(calculationArray[calculationArray.length-2]);
@@ -60,12 +66,12 @@ function applyClickHandlers(){
       var answer = calculationArray[calculationArray.length-1];
     }
     while (calculationArray.length >=3){
-      var answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1]);
+      answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1]);
       calculationArray.splice(0,3,answer);
     }
     //if missing operands and numbers
     if (calculationArray[calculationArray.length-1] == null) {
-      var answer = 0;
+      answer = 0;
     }
     displayArray.push(answer);
     updateDisplay();
@@ -86,6 +92,8 @@ function applyClickHandlers(){
     inputtedNumber = "";
     answer = null;
     displayArray = [];
+    $('.pie').hide();
+    $('.noface').hide();
     updateDisplay();
   });
 }

@@ -23,6 +23,24 @@ h1 {
     opacity: 0.9;
 }
 
+.pie {
+    display: none;
+    position: fixed;
+    height: 60px;
+    width: 80px;
+    right: 30px;
+    top: 35px;
+}
+
+.noface {
+    display: none;
+    position: fixed;
+    height: 63px;
+    width: 80px;
+    top: 30px;
+    right: 90px;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -45,13 +63,18 @@ h1 {
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
-  height: 45%;
+  height: 69%;
   border-radius: 15px;
 }
 
-.modal-content p, ul {
+.modal-content ul {
     text-align: center;
     font-size: 18px;
+}
+
+.modal-content p {
+    font-size: 20px;
+    text-align: center;
 }
 
 .close {
@@ -92,10 +115,9 @@ h1 {
     position: relative;
     top: 25px;
     display: inline-block;
-    /* margin: 0 auto; */
     height: 15%;
     width: 85%;
-    background-color: rgb(255, 200, 209);
+    background-color: rgb(253, 212, 219);
     left: 7.5%;
     border-radius: 10px;
 }
@@ -179,8 +201,4 @@ p.center {
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
-}
-
-p {
-    font-size: 3rem;
 }
