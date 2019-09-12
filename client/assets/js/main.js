@@ -21,7 +21,6 @@ function applyClickHandlers(){
     inputtedNumber = $(event.currentTarget).find('p').text();
     stringNumberToPush = stringNumberToPush.concat(inputtedNumber);
     displayArray.push(inputtedNumber);
-    console.log(displayArray);
     updateDisplay();
   });
   $('#operator-column').on('click', '.operator', function operatorButtonHandler(event){
@@ -55,7 +54,8 @@ function applyClickHandlers(){
     if (calculationArray.indexOf('3.14') !== -1){
       $('.pie').show();
       $('.noface').show();
-      calculationArray = [];
+      calculationArray[calculationArray.length-1] == '';
+      var answer = '';
     }
     //partial operand - checks last value, if operator then we push the number before the operator as num2
      if (isNaN(calculationArray[calculationArray.length-1])){
@@ -63,7 +63,7 @@ function applyClickHandlers(){
     }
     //if missing operators, inputted number is pushed as the answer
     if (!calculationArray.some(isNaN)){
-      var answer = calculationArray[calculationArray.length-1];
+      answer = calculationArray[calculationArray.length-1];
     }
     while (calculationArray.length >=3){
       answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1]);
