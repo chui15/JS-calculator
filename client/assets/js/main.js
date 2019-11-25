@@ -31,17 +31,12 @@ function applyClickHandlers(){
     if (stringNumberToPush != "") {
       calculationArray.push(stringNumberToPush);
     }
-    //given input in calculator [2, +, -, *, 2]
-    //we are checking if the last-inputted operator is an operator (so not a number)
-    //this will work with any sequence of operators because it will always just replace w/ the last inputted operator
-    //if not, assigns it to the last-inputted operator and then does the calculation
     if (isNaN(calculationArray[calculationArray.length-1])) {
         calculationArray[calculationArray.length-1] = inputtedOperator;
       }
       else {
         calculationArray.push(inputtedOperator);
       }
-    console.log(calculationArray);
     stringNumberToPush = "";
   });
   $('#equals').on('click', function equalsButtonHandler(event){
@@ -50,18 +45,15 @@ function applyClickHandlers(){
     }
     stringNumberToPush = "";
     displayArray = [];
-    console.log(calculationArray);
     if (calculationArray.indexOf('3.14') !== -1){
       $('.pie').show();
       $('.noface').show();
       calculationArray[calculationArray.length-1] == '';
       var answer = '';
     }
-    //partial operand - checks last value, if operator then we push the number before the operator as num2
      if (isNaN(calculationArray[calculationArray.length-1])){
       calculationArray.push(calculationArray[calculationArray.length-2]);
     }
-    //if missing operators, inputted number is pushed as the answer
     if (!calculationArray.some(isNaN)){
       answer = calculationArray[calculationArray.length-1];
     }
@@ -69,7 +61,6 @@ function applyClickHandlers(){
       answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1]);
       calculationArray.splice(0,3,answer);
     }
-    //if missing operands and numbers
     if (calculationArray[calculationArray.length-1] == null) {
       answer = 0;
     }
